@@ -20,7 +20,7 @@ if bypasslkhub_system_key then
 		[leoKholYtLink .. "uilibs/main/finity.lua"] = lkhubBackupLink .. "lib/finity.lua",
 		[lkhubLink .. "s/lib.lua"] = lkhubBackupLink .. "lib/lib.lua",
 		[leoKholYtLink .. "roblox/main/lk_serverhop.lua"] = lkhubBackupLink .. "lib/lk_serverhop.lua",
-		[lkhubLink .. "s/LKHUB_Module.lua"] = lkhubBackupLink .. "lib/LKHUB_Module.lua"
+		[lkhubLink .. "s/LKHUB_Module.lua"] = lkhubBackupLink .. "lib/LKHUB_Module.lua",
 		
 		--services
 		[lkhubLink .. "s/universal.lua"] = lkhubBackupLink .. "services/universal.lua"
