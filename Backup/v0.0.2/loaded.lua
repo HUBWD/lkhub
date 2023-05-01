@@ -1,6 +1,6 @@
-if bypasslkhub_system_key then
+if not bypasslkhub_system_key then
 	local lkhubLink = "https://lkhub.net/"
-	local lkhubBackupLink = "https://raw.githubusercontent.com/HUBWD/lkhub/main/Backup/v0.0.2/script/"
+	local lkhubBackupLink = "https://raw.githubusercontent.com/HUBWD/lkhub/main/Backup/v0.0.2/"
 	local leoKholYtLink = "https://raw.githubusercontent.com/LeoKholYt/"
 	local list_json = game:GetService("HttpService"):JSONDecode(game:HttpGet(lkhubBackupLink .. "data/list.json"))
 
@@ -28,7 +28,7 @@ if bypasslkhub_system_key then
 
 	for i, data in pairs(list_json) do
 		if data["s"] and string.match(data["s"], "%.lua$") then
-			httpGetLinks[lkhubLink .. "s/" .. data["s"]] = lkhubBackupLink .. data["s"]
+			httpGetLinks[lkhubLink .. "s/" .. data["s"]] = lkhubBackupLink .. "services/" .. data["s"]
 		end
 	end
 
@@ -44,11 +44,28 @@ if bypasslkhub_system_key then
 		end
 		return oldHttpGet(method, url, ...)
 	end)
+	
+	--Anti lkhub
+	local oldclip;oldclip = hookfunction(setclipboard, function(data)
+		if data == "https://lkhub.net/d" then
+			return
+		end;
+		return oldclip(data)
+	end)
+	
+	local oldfile;oldfile = hookfunction(readfile, function(data,...)
+		if data == "lkhub_key.txt" then
+			return "Invalid Key: Please contact support and say 'I love bananas' to get a new one."
+		end;
+		return oldfile(data,...)
+	end);
+	
 	getgenv().bypasslkhub_system_key=true;
 end
+
 loadstring(
 	game:HttpGet(
-		"https://raw.githubusercontent.com/HUBWD/lkhub/main/Backup/v0.0.2/script/loader.lua"
+		"https://raw.githubusercontent.com/HUBWD/lkhub/main/Backup/v0.0.2/lib/loader.lua"
 	)
 )([[
 --Just like a delicious coffee, a good exploit script should be strong and resilient. Unfortunately, lkhub is neither of those things. It's like drinking dirty water - no flavor, no benefits, and no safety.
